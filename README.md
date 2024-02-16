@@ -4,13 +4,13 @@
 
 Registering a method that will execute only once upon invocation of an event is a common operation in the observer pattern. In languages such as JavaScript, this is done in one line by specifying an options property:
 
-```
+```javascript
 element.addEventListener("click", () => { ... }, { once: true });
 ```
 
 In C#, it is done like this:
 
-```
+```csharp
 Action OnEvent = delegate { }
 
 Action wrapperEvent = null;
@@ -30,7 +30,7 @@ However, in the lack of native language support for registering a method as an o
 
 By utilising the CLSS type [`Reference`](https://www.nuget.org/packages/CLSS.Types.Reference) - a general-purpose reference-type wrapper for a single value of any type, this package is able to provide the `Once` extension method to a delegate encapsulated in a `CLSS.Reference`. The one-off method registration syntax can now be done in as short as one line.
 
-```
+```csharp
 using CLSS;
 
 Reference<Action> OnEvent = new Reference<Action>(delegate { });
@@ -44,7 +44,7 @@ OnEvent.Value.Invoke();
 
 `Once` only works well as long as the encapsulated delegate is used via its encapsulating `CLSS.Reference`. Creating a `CLSS.Reference` out of a raw delegate field will not result in methods being registered to the raw delegate.
 
-```
+```csharp
 using CLSS;
 
 Action RawEvent = delegate { };
